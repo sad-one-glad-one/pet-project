@@ -1,0 +1,8 @@
+.home {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-column-gap: 24px;
+  height: 100vh;
+  overflow-y: hidden;
+  background-color: black;
+}

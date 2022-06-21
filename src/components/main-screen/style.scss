@@ -1,0 +1,16 @@
+.main-screen {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+
+  &__img-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: auto;
+      height: 100%;
+    }
+  }
+}

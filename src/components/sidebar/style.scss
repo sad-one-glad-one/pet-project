@@ -1,0 +1,40 @@
+.sidebar {
+  display: grid;
+  grid-row-gap: 24px;
+  overflow-y: scroll;
+  background-color: rgba(7 , 10, 27, 0.5);
+  backdrop-filter: blur(6px);
+  padding: 8px;
+
+  &__head {
+    height: 100px;
+    background-color: tomato;
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 16px;
+    grid-row-gap: 24px;
+    padding-bottom: 64px;
+
+    &-item {
+      height: 100px;
+
+      .item__image-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 80px;
+        width: auto;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: auto;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
