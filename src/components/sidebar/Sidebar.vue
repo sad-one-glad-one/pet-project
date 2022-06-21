@@ -1,7 +1,7 @@
 <template>
   <article class="sidebar">
     <div class="sidebar__head">
-      <p>SELECTS</p>
+      <datepicker />
     </div>
     <div class="sidebar__body">
       <div
@@ -27,12 +27,18 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css';
+
 export default defineComponent({
   name: "Sidebar",
   props: {
     cosmicData: {
       type: Array
     }
+  },
+  components: {
+    Datepicker
   },
   methods: {
     setMainImage (index: number) : void {
