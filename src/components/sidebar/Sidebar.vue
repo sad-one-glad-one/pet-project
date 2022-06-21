@@ -10,7 +10,11 @@
           class="sidebar__body-item"
       >
         <div v-if="item.url" class="item__image-wrap">
-          <img :src="item.url" alt="img" draggable="false" />
+          <img
+            :src="item.url"
+            alt="img" draggable="false"
+            @click="setMainImage(index)"
+          />
         </div>
         <div>
           <p>{{item.title}}</p>
@@ -28,6 +32,11 @@ export default defineComponent({
   props: {
     cosmicData: {
       type: Array
+    }
+  },
+  methods: {
+    setMainImage (index: number) : void {
+      this.$emit('setImage', index)
     }
   }
 })

@@ -1,7 +1,7 @@
 <template>
   <article class="main-screen">
     <div class="main-screen__img-wrap">
-      <img :src="cosmicData[0]?.url" alt="main-img" draggable="false">
+      <img :src="selectedObject?.url" alt="main-img" draggable="false">
     </div>
   </article>
 </template>
@@ -12,7 +12,7 @@ import { defineComponent, PropType } from "vue";
 export default defineComponent({
   name: "MainScreen",
   props: {
-    cosmicData: {
+    selectedObject: {
       type: Array
     }
   },
