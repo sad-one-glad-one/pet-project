@@ -3,14 +3,39 @@
   justify-content: center;
   overflow: hidden;
 
+  &__section {
+    position: relative;
+  }
+
   &__img-wrap {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: auto;
 
     img {
       width: auto;
       height: 100%;
     }
+  }
+
+  &__title, &__description {
+    position: absolute;
+    min-height: 50px;
+    width: calc(100% - 32px);
+    background-color: rgba(7 , 10, 27, 0.5);
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  &__title {
+    top: 16px;
+    right: 16px;
+  }
+
+  &__description {
+    bottom: 16px;
+    left: 16px;
   }
 }

@@ -1,13 +1,22 @@
 <template>
   <article class="main-screen">
-    <div class="main-screen__img-wrap">
-      <img :src="selectedObject?.url" alt="main-img" draggable="false">
-    </div>
+    <section class="main-screen__section">
+      <div class="main-screen__img-wrap">
+        <img :src="selectedObject?.url" alt="main-img" draggable="false">
+      </div>
+      <div class="main-screen__title">
+        <p>{{ selectedObject?.title }}</p>
+        <p>{{ selectedObject?.date }}</p>
+      </div>
+      <div class="main-screen__description">
+        <p>{{ selectedObject?.explanation }}</p>
+      </div>
+    </section>
   </article>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "MainScreen",
