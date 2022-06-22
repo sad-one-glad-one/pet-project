@@ -1,11 +1,17 @@
 <template>
   <article class="sidebar">
     <div class="sidebar__head">
-      <datepicker />
+      <datepicker
+        v-model="date"
+        range
+        dark
+        :enableTimePicker="false"
+        @update:modelValue="setNewDate"
+      />
     </div>
     <div class="sidebar__body">
       <div
-          v-for="(item,index) in cosmicData"
+          v-for="(item,index) in EX_$CosmicList.cosmicData"
           :key="index"
           class="sidebar__body-item"
       >
@@ -25,16 +31,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
+import $CosmicList from "@/typescript/CosmicList";
+
 export default defineComponent({
   name: "Sidebar",
+  emits: ['setImage'],
   props: {
     cosmicData: {
       type: Array
+    }
+  },
+  data () {
+    return {
+      EX_$CosmicList: $CosmicList,
+      date: ref()
     }
   },
   components: {
@@ -43,7 +58,20 @@ export default defineComponent({
   methods: {
     setMainImage (index: number) : void {
       this.$emit('setImage', index)
+    },
+    setBaseDate () : void {
+      const startDate = new Date();
+      const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
+      this.date = [startDate, endDate];
+    },
+    setNewDate () : void {
+      const startDate = this.date[0].toISOString().slice(0, 10)
+      const endDate = this.date[1].toISOString().slice(0, 10)
+      this.EX_$CosmicList.setData(startDate, endDate)
     }
+  },
+  mounted () {
+    this.setBaseDate()
   }
 })
 </script>
