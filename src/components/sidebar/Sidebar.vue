@@ -14,13 +14,16 @@
           v-for="(item,index) in EX_$CosmicList.cosmicData"
           :key="index"
           class="sidebar__body-item"
+          :class="{'body-item_active': index === selectedItem}"
       >
-        <div class="item__image-wrap">
+        <div
+          class="item__image-wrap"
+          @click="setMainImage(index)"
+        >
           <img
             :src="item.media_type === 'image' ? item.url : getPoster"
             alt="img"
             draggable="false"
-            @click="setMainImage(index)"
           />
         </div>
         <p>{{item.title}}</p>
@@ -48,7 +51,8 @@ export default defineComponent({
   data () {
     return {
       EX_$CosmicList: $CosmicList,
-      date: ref()
+      date: ref(),
+      selectedItem: 0
     }
   },
   components: {
@@ -61,6 +65,7 @@ export default defineComponent({
   },
   methods: {
     setMainImage (index: number) : void {
+      this.selectedItem = index
       this.$emit('setImage', index)
     },
     setBaseDate () : void {

@@ -24,9 +24,14 @@
     &-item {
       display: grid;
       grid-row-gap: 6px;
-      border: 1px solid tomato;
+      border: 1px solid #696969;
       border-radius: 6px;
       padding: 6px;
+
+      &:hover {
+        box-shadow: 0 0 10px 0 #696969;
+        transition: all 0.5s ease;
+      }
 
       .item__image-wrap {
         display: flex;
@@ -34,11 +39,11 @@
         height: 80px;
         width: auto;
         overflow: hidden;
+        cursor: pointer;
 
         img {
           width: auto;
           height: 100%;
-          cursor: pointer;
         }
       }
 
@@ -49,6 +54,10 @@
         width: auto;
         overflow: hidden;
       }
+    }
+
+    .body-item_active {
+      border: 1px solid #fff;
     }
   }
 }
