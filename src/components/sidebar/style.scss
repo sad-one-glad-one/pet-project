@@ -22,10 +22,14 @@
     padding: 0 8px 64px 8px;
 
     &-item {
+      display: grid;
+      grid-row-gap: 6px;
+      border: 1px solid tomato;
+      border-radius: 6px;
+      padding: 6px;
 
       .item__image-wrap {
         display: flex;
-        align-items: center;
         justify-content: center;
         height: 80px;
         width: auto;
@@ -36,6 +40,14 @@
           height: auto;
           cursor: pointer;
         }
+      }
+
+      .item__video-wrap {
+        display: flex;
+        justify-content: center;
+        height: 80px;
+        width: auto;
+        overflow: hidden;
       }
     }
   }

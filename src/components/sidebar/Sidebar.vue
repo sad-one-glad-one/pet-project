@@ -15,16 +15,15 @@
           :key="index"
           class="sidebar__body-item"
       >
-        <div v-if="item.url" class="item__image-wrap">
+        <div class="item__image-wrap">
           <img
-            :src="item.url"
-            alt="img" draggable="false"
+            :src="item.media_type === 'image' ? item.url : getPoster"
+            alt="img"
+            draggable="false"
             @click="setMainImage(index)"
           />
         </div>
-        <div>
-          <p>{{item.title}}</p>
-        </div>
+        <p>{{item.title}}</p>
       </div>
     </div>
   </article>
@@ -54,6 +53,11 @@ export default defineComponent({
   },
   components: {
     Datepicker
+  },
+  computed: {
+    getPoster () : string {
+      return 'https://www.realfinityrealty.com/wp-content/uploads/2018/08/video-poster.jpg'
+    }
   },
   methods: {
     setMainImage (index: number) : void {
