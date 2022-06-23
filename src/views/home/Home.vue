@@ -1,17 +1,17 @@
 <template>
   <section class="home">
-    <main-screen :selected-object="EX_$SetCosmicData.cosmicData[selectedImage]"  />
+    <main-screen :selected-object="EX_$CosmicList.cosmicData[selectedImage]"  />
     <sidebar @set-image="setSelectedImage" />
   </section>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 
 import MainScreen from "@/components/main-screen/MainScreen.vue";
 import Sidebar from "@/components/sidebar/Sidebar.vue";
 
-import $SetCosmicData from "@/typescript/CosmicList";
+import $CosmicList from "@/typescript/CosmicList";
 
 export default defineComponent({
   name: 'Home',
@@ -21,7 +21,7 @@ export default defineComponent({
   },
   data () {
     return {
-      EX_$SetCosmicData: $SetCosmicData,
+      EX_$CosmicList: $CosmicList,
       selectedImage: 0
     }
   },
