@@ -5,8 +5,10 @@
         v-model="date"
         range
         dark
+        :min-date="new Date(1995,5,16)"
+        :max-date="new Date()"
         :enableTimePicker="false"
-        @update:modelValue="setNewDate"
+        @update:modelValue="setCurrentDate"
       />
     </div>
     <div class="sidebar__body">
@@ -61,6 +63,9 @@ export default defineComponent({
   computed: {
     getPoster () : string {
       return 'https://www.realfinityrealty.com/wp-content/uploads/2018/08/video-poster.jpg'
+    },
+    disabledEmptyDates () : string {
+      return ``
     }
   },
   methods: {
@@ -69,11 +74,13 @@ export default defineComponent({
       this.$emit('setImage', index)
     },
     setBaseDate () : void {
-      const startDate = new Date();
-      const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
+      const today = new Date ();
+      const startDate = new Date(new Date().setDate(today.getDate() - 7));
+      const endDate = today
       this.date = [startDate, endDate];
+      this.setCurrentDate()
     },
-    setNewDate () : void {
+    setCurrentDate () : void {
       const startDate = this.date[0].toISOString().slice(0, 10)
       const endDate = this.date[1].toISOString().slice(0, 10)
       this.EX_$CosmicList.setData(startDate, endDate)

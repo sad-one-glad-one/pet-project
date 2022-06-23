@@ -29,9 +29,6 @@ export default defineComponent({
     setSelectedImage(num: number) :void {
       this.selectedImage = num
     }
-  },
-  mounted() {
-    this.EX_$SetCosmicData.setData('2017-07-08', '2017-07-20')
   }
 })
 </script>

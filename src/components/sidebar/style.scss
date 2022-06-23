@@ -2,6 +2,7 @@
   display: grid;
   grid-template-rows: max-content 1fr;
   grid-row-gap: 24px;
+  overflow-x: hidden;
   overflow-y: scroll;
   background-color: rgba(7 , 10, 27, 0.5);
   backdrop-filter: blur(6px);
