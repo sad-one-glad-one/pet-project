@@ -45,6 +45,8 @@ import { defineComponent } from "vue";
 
 import VueEasyLightbox from 'vue-easy-lightbox'
 
+import $CosmicList from "@/typescript/CosmicList";
+
 export default defineComponent({
   name: "MainScreen",
   components: {
@@ -57,7 +59,18 @@ export default defineComponent({
   },
   data () {
     return {
+      EX_$CosmicList: $CosmicList,
       isZoomModalOpened: false,
+    }
+  },
+  watch: {
+    isApiLoading (value) {
+      if (!value) this.isZoomModalOpened = false
+    }
+  },
+  computed: {
+    isApiLoading () : boolean {
+      return this.EX_$CosmicList.isFetching
     }
   },
   methods: {
