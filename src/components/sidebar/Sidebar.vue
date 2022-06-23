@@ -8,6 +8,7 @@
         :min-date="new Date(1995,5,16)"
         :max-date="new Date()"
         :enableTimePicker="false"
+        :disabled="isApiLoading"
         @update:modelValue="setCurrentDate"
       />
     </div>
@@ -20,15 +21,19 @@
       >
         <div
           class="item__image-wrap"
-          @click="setSelectedImage(index)"
+          :class="{'item__image-wrap_fetched' : isApiLoading}"
+          @click="isApiLoading ? '' : setSelectedImage(index)"
         >
           <img
+            v-if="!isApiLoading"
             :src="item.media_type === 'image' ? item.url : getPoster"
             alt="img"
             draggable="false"
           />
+          <Skeletor v-else height="100%" width="100%" />
         </div>
-        <p>{{item.title}}</p>
+        <p v-if="!isApiLoading">{{item.title}}</p>
+        <Skeletor v-else height="35" width="100%" />
       </div>
     </div>
   </article>
@@ -37,6 +42,8 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 
+import {Skeletor} from "vue-skeletor";
+import 'vue-skeletor/dist/vue-skeletor.css';
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
@@ -45,6 +52,10 @@ import $CosmicList from "@/typescript/CosmicList";
 export default defineComponent({
   name: "Sidebar",
   emits: ['setImage'],
+  components: {
+    Datepicker,
+    Skeletor
+  },
   props: {
     cosmicData: {
       type: Array
@@ -57,15 +68,12 @@ export default defineComponent({
       selectedItem: 0
     }
   },
-  components: {
-    Datepicker
-  },
   computed: {
     getPoster () : string {
       return 'https://www.realfinityrealty.com/wp-content/uploads/2018/08/video-poster.jpg'
     },
-    disabledEmptyDates () : string {
-      return ``
+    isApiLoading () : boolean {
+      return this.EX_$CosmicList.isFetching
     }
   },
   methods: {
@@ -81,10 +89,10 @@ export default defineComponent({
       this.setCurrentDate()
     },
     setCurrentDate () : void {
+      this.setSelectedImage(0)
       const startDate = this.date[0].toISOString().slice(0, 10)
       const endDate = this.date[1].toISOString().slice(0, 10)
       this.EX_$CosmicList.setData(startDate, endDate)
-      this.setSelectedImage(0)
     }
   },
   mounted () {

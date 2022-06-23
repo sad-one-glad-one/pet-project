@@ -24,14 +24,17 @@ class $CosmicList {
 
     async setData(start_date? : string, end_date? : string) {
         const apiKey = '9kfchBRfxQB0zYtl5XuZywzTGaLaaEcN0Z7bx5zH'
+        this.isFetching = true
+
         await axios({
             method: 'get',
             url: `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&start_date=${start_date}&end_date=${end_date}`,
         }).then(res => {
             this.cosmicData = res.data
-            console.log(this.cosmicData)
+            this.isFetching = false
         }).catch(err => {
             console.log('error', err)
+            this.isFetching = false
         })
     }
 }

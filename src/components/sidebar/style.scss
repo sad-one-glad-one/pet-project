@@ -39,14 +39,18 @@
       .item__image-wrap {
         display: flex;
         justify-content: center;
+        align-items: center;
         height: 80px;
-        width: auto;
         overflow: hidden;
         cursor: pointer;
 
+        &_fetched {
+          cursor: progress;
+        }
+
         img {
-          width: auto;
-          height: 100%;
+          width: 100%;
+          height: auto;
         }
       }
 
