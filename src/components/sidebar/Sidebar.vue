@@ -20,7 +20,7 @@
       >
         <div
           class="item__image-wrap"
-          @click="setMainImage(index)"
+          @click="setSelectedImage(index)"
         >
           <img
             :src="item.media_type === 'image' ? item.url : getPoster"
@@ -69,7 +69,7 @@ export default defineComponent({
     }
   },
   methods: {
-    setMainImage (index: number) : void {
+    setSelectedImage (index: number) : void {
       this.selectedItem = index
       this.$emit('setImage', index)
     },
@@ -84,6 +84,7 @@ export default defineComponent({
       const startDate = this.date[0].toISOString().slice(0, 10)
       const endDate = this.date[1].toISOString().slice(0, 10)
       this.EX_$CosmicList.setData(startDate, endDate)
+      this.setSelectedImage(0)
     }
   },
   mounted () {
