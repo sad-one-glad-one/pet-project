@@ -6,13 +6,6 @@
   &__section {
     position: relative;
     width: 100%;
-
-    &:hover {
-      .main-screen__description, .main-screen__title {
-        opacity: 0;
-        transition: all 1s ease;
-      }
-    }
   }
 
   &__img-wrap {
@@ -29,7 +22,7 @@
     }
   }
 
-  &__title, &__description {
+  &__title-wrap, &__description {
     position: absolute;
     min-height: 50px;
     background-color: rgba(7 , 10, 27, 0.5);
@@ -38,13 +31,30 @@
     opacity: 1;
   }
 
-  &__title {
+  &__title-wrap {
+    display: grid;
+    grid-row-gap: 12px;
     top: 0;
     right: 0;
+
+    .title-wrap__title {
+      color: white;
+      margin: 0;
+    }
+
+    .title-wrap__date {
+      font-size: 18px;
+    }
   }
 
   &__description {
     bottom: 0;
     left: 0;
+    max-height: 100px;
+    overflow-y: auto;
+
+    &-text {
+      font-size: 18px;
+    }
   }
 }

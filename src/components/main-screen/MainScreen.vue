@@ -9,12 +9,18 @@
           @click="isZoomModalOpened = true"
         >
       </div>
-      <div class="main-screen__title">
-        <p>{{ selectedObject?.title }}</p>
-        <p>{{ selectedObject?.date }}</p>
+      <div class="main-screen__title-wrap">
+        <h2 class="title-wrap__title">
+          {{ selectedObject?.title }}
+        </h2>
+        <p class="title-wrap__date">
+          {{ selectedObject?.date }}
+        </p>
       </div>
       <div class="main-screen__description">
-        <p>{{ selectedObject?.explanation }}</p>
+        <p class="main-screen__description-text">
+          {{ selectedObject?.explanation }}
+        </p>
       </div>
     </section>
     <vue-easy-lightbox
