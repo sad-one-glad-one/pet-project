@@ -1,6 +1,9 @@
 <template>
   <article class="main-screen">
-    <section class="main-screen__section">
+    <section
+      v-if="selectedObject?.media_type === 'image'"
+      class="main-screen__section"
+    >
       <div class="main-screen__img-wrap">
         <img
           :src="selectedObject?.url"
@@ -22,12 +25,18 @@
           {{ selectedObject?.explanation }}
         </p>
       </div>
+      <vue-easy-lightbox
+          :visible="isZoomModalOpened"
+          :imgs="isHdFormat ? selectedObject?.hdurl : selectedObject?.url"
+          @hide="isZoomModalOpened = false"
+      />
     </section>
-    <vue-easy-lightbox
-        :visible="isZoomModalOpened"
-        :imgs="isHdFormat ? selectedObject?.hdurl : selectedObject?.url"
-        @hide="isZoomModalOpened = false"
-    />
+    <section
+      v-else
+      class="main-screen__section"
+    >
+      <iframe class="main-screen__iframe" :src="selectedObject?.url" />
+    </section>
   </article>
 </template>
 
