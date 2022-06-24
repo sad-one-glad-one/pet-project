@@ -68,6 +68,10 @@
     .main-screen__title-wrap {
       right: unset;
       left: 0;
+
+      .title-wrap__title {
+        padding-right: 40px;
+      }
     }
   }
 }

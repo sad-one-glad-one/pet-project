@@ -1,6 +1,13 @@
 <template>
-  <article class="sidebar" :class="{'sidebar_hide' : isClose, 'sidebar_open' : !isClose}">
-    <button class="sidebar__button" @click="isClose = !isClose"></button>
+  <article
+      class="sidebar"
+      :class="{'sidebar_hide' : isClose, 'sidebar_open' : !isClose}"
+  >
+    <button
+        class="sidebar__button"
+        :class="{'sidebar__button_closed' : isClose, 'sidebar__button_opened' : !isClose}"
+        @click="isClose = !isClose"
+    />
     <div class="sidebar__inner">
       <div class="sidebar__inner-head">
         <datepicker

@@ -5,11 +5,35 @@
   &__button {
     display: none;
     position: absolute;
-    top: 0;
-    left: -70px;
-    width: 70px;
-    height: 70px;
-    background-color: tomato;
+    top: 16px;
+    left: -38px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #2d2d2d;
+    box-sizing: border-box;
+    border-radius: 4px 0 0 4px;
+    background-color: #212121;
+    overflow: hidden;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: calc(50% - 9px);
+      left: calc(50% - 9px);
+      width: 18px;
+      height: 18px;
+      background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 18.1.1  SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 185.343 185.343' style='enable-background:new 0 0 185.343 185.343%3B' xml:space='preserve'%3E%3Cg%3E%3Cpath style='fill:%23ffffff%3B' d='M51.707 185.343c-2.741 0-5.493-1.044-7.593-3.149c-4.194-4.194-4.194-10.981 0-15.175l74.352-74.347L44.114 18.32c-4.194-4.194-4.194-10.987 0-15.175c4.194-4.194 10.987-4.194 15.18 0l81.934 81.934c4.194 4.194 4.194 10.987 0 15.175l-81.934 81.939C57.201 184.293 54.454 185.343 51.707 185.343z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    &_opened::after {
+      transform: rotate(360deg);
+      transition: transform .5s ease;
+    }
+
+    &_closed::after {
+      transform: rotate(180deg);
+      transition: transform .5s ease;
+    }
   }
 
   &__inner {
@@ -24,7 +48,7 @@
     &-head {
       position: sticky;
       top: 0;
-      background-color: rgba(7, 10, 27, 0.5);
+      //background-color: rgba(7, 10, 27, 0.5);
       backdrop-filter: blur(6px);
       padding: 16px 8px;
     }
@@ -79,13 +103,18 @@
     position: fixed;
     top: 0;
     right: 0;
+    width: 260px;
+
+    .sidebar__inner-body {
+      grid-template-columns: 1fr;
+    }
 
     .sidebar__button {
       display: block;
     }
 
     &.sidebar_hide {
-      transform: translateX(300px);
+      transform: translateX(100%);
       transition: transform .5s ease;
     }
 
