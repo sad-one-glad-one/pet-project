@@ -16,9 +16,14 @@
         <h2 class="title-wrap__title">
           {{ selectedObject?.title }}
         </h2>
-        <p class="title-wrap__date">
-          {{ selectedObject?.date }}
-        </p>
+        <div class="title-wrap__author">
+          <p class="title-wrap__author-date">
+            {{ selectedObject?.date }}
+          </p>
+          <p v-if="selectedObject?.copyright" class="title-wrap__author-copy">
+            by {{ selectedObject?.copyright }}
+          </p>
+        </div>
       </div>
       <div class="main-screen__description">
         <p class="main-screen__description-text">

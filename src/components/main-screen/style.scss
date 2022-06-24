@@ -42,8 +42,17 @@
       margin: 0;
     }
 
-    .title-wrap__date {
-      font-size: 18px;
+    .title-wrap__author {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      grid-column-gap: 8px;
+      grid-row-gap: 4px;
+
+      &-date, &-copy {
+        font-size: 18px;
+      }
     }
   }
 
