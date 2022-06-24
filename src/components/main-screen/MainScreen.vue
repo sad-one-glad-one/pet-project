@@ -1,6 +1,6 @@
 <template>
   <article class="main-screen">
-    <section
+    <div
       v-if="selectedObject?.media_type === 'image'"
       class="main-screen__section"
     >
@@ -30,7 +30,7 @@
           :imgs="isHdFormat ? selectedObject?.hdurl : selectedObject?.url"
           @hide="isZoomModalOpened = false"
       />
-    </section>
+    </div>
     <section
       v-else
       class="main-screen__section"

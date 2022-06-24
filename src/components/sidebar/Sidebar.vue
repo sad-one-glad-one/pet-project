@@ -2,8 +2,10 @@
   <article
       class="sidebar"
       :class="{'sidebar_hide' : isClose, 'sidebar_open' : !isClose}"
+      v-click-away="onClickAway"
   >
     <button
+        v-if="windowWidth <= 980"
         class="sidebar__button"
         :class="{'sidebar__button_closed' : isClose, 'sidebar__button_opened' : !isClose}"
         @click="isClose = !isClose"
@@ -57,11 +59,15 @@ import 'vue-skeletor/dist/vue-skeletor.css';
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
+import { mixin as VueClickAway } from "vue3-click-away";
+import $isWindow from "@/mixins/isWindow.mixin";
+
 import $CosmicList from "@/typescript/CosmicList";
 
 export default defineComponent({
   name: "Sidebar",
   emits: ['setImage'],
+  mixins: [VueClickAway, $isWindow],
   components: {
     Datepicker,
     Skeletor
@@ -88,6 +94,9 @@ export default defineComponent({
     }
   },
   methods: {
+    onClickAway() {
+      if (!this.isClose && this.windowWidth <= 980) this.isClose = true
+    },
     setSelectedImage (index: number) : void {
       this.selectedItem = index
       this.$emit('setImage', index)
