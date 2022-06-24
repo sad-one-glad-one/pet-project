@@ -62,4 +62,12 @@
     width: 100%;
     height: 100%;
   }
+
+  @media (max-width: 980px) {
+
+    .main-screen__title-wrap {
+      right: unset;
+      left: 0;
+    }
+  }
 }

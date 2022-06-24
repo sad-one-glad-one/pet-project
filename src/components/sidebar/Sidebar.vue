@@ -1,39 +1,42 @@
 <template>
-  <article class="sidebar">
-    <div class="sidebar__head">
-      <datepicker
-        v-model="date"
-        range
-        dark
-        :min-date="new Date(1995,5,16)"
-        :max-date="new Date()"
-        :enableTimePicker="false"
-        :disabled="isApiLoading"
-        @update:modelValue="setCurrentDate"
-      />
-    </div>
-    <div class="sidebar__body">
-      <div
-          v-for="(item,index) in EX_$CosmicList.cosmicData"
-          :key="index"
-          class="sidebar__body-item"
-          :class="{'body-item_active': index === selectedItem}"
-      >
+  <article class="sidebar" :class="{'sidebar_hide' : isClose, 'sidebar_open' : !isClose}">
+    <button class="sidebar__button" @click="isClose = !isClose"></button>
+    <div class="sidebar__inner">
+      <div class="sidebar__inner-head">
+        <datepicker
+            v-model="date"
+            range
+            dark
+            :min-date="new Date(1995,5,16)"
+            :max-date="new Date()"
+            :enableTimePicker="false"
+            :disabled="isApiLoading"
+            @update:modelValue="setCurrentDate"
+        />
+      </div>
+      <div class="sidebar__inner-body">
         <div
-          class="item__image-wrap"
-          :class="{'item__image-wrap_fetched' : isApiLoading}"
-          @click="isApiLoading ? '' : setSelectedImage(index)"
+            v-for="(item,index) in EX_$CosmicList.cosmicData"
+            :key="index"
+            class="body-item"
+            :class="{'body-item_active': index === selectedItem}"
         >
-          <img
-            v-if="!isApiLoading"
-            :src="item.media_type === 'image' ? item.url : getPoster"
-            alt="img"
-            draggable="false"
-          />
-          <Skeletor v-else height="100%" width="100%" />
+          <div
+              class="body-item__image-wrap"
+              :class="{'body-item__image-wrap_fetched' : isApiLoading}"
+              @click="isApiLoading ? '' : setSelectedImage(index)"
+          >
+            <img
+                v-if="!isApiLoading"
+                :src="item.media_type === 'image' ? item.url : getPoster"
+                alt="img"
+                draggable="false"
+            />
+            <Skeletor v-else height="100%" width="100%" />
+          </div>
+          <p v-if="!isApiLoading">{{item.title}}</p>
+          <Skeletor v-else height="35" width="100%" />
         </div>
-        <p v-if="!isApiLoading">{{item.title}}</p>
-        <Skeletor v-else height="35" width="100%" />
       </div>
     </div>
   </article>
@@ -65,7 +68,8 @@ export default defineComponent({
     return {
       EX_$CosmicList: $CosmicList,
       date: ref(),
-      selectedItem: 0
+      selectedItem: 0,
+      isClose: false
     }
   },
   computed: {
