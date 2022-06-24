@@ -19,6 +19,7 @@
             :min-date="new Date(1995,5,16)"
             :max-date="new Date()"
             :enableTimePicker="false"
+            :clearable="false"
             :disabled="isApiLoading"
             @update:modelValue="setCurrentDate"
         />
